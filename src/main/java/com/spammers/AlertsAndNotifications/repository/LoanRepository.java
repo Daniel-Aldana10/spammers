@@ -25,7 +25,7 @@ public interface LoanRepository extends JpaRepository<LoanModel, String> {
      * @param pageable    The pagination details, such as page number and size.
      * @return A list of LoanModel objects that have expired before the given current date.
      */
-    @Query("SELECT l FROM LoanModel l WHERE l.loanExpired < :currentDate AND l.status = true")
+    @Query("SELECT l FROM LoanModel l WHERE l.loanExpired < :currentDate AND l.bookReturned = false AND l.status = true")
     List<LoanModel> findExpiredLoans(@Param("currentDate") LocalDate currentDate, Pageable pageable);
 
     /**
